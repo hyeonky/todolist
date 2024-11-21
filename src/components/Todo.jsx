@@ -1,36 +1,33 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import TodoList from './TodoList';
 import TodoEditor from './TodoEditor';
 import TodoHd from './TodoHd';
-
-const mockTodoDate = [
-  {
-    id: 1,
-    isDone: false,
-    task: '고양이 밥주기',
-    createDate: '2024.04.22',
-  },
-  {
-    id: 2,
-    isDone: true,
-    task: '감자, 맛동산 캐기',
-    createDate: '2024.04.21',
-  },
-  {
-    id: 3,
-    isDone: true,
-    task: '고양이 놀아주기',
-    createDate: '2024.04.23',
-  },
-];
+import { mockTodoDate } from '@/data/todoData';
 
 const Todo = () => {
+  const [todos, setTodos] = useState(mockTodoDate);
+
+  // 할 일 추가하는 함수
+  const addTodo = (task) => {
+    setTodos([
+      ...todos,
+      {
+        id: todos.length + 1,
+        isDone: false,
+        task: task,
+        createDate: new Date().toLocaleDateString(),
+      },
+    ]);
+  };
+
   return (
     <div>
       <TodoHd />
-      <TodoEditor />
+      <TodoEditor addTodo={addTodo} />
       {/* 구조분해할당 */}
-      <TodoList mockTodoDate={mockTodoDate} />
+      <TodoList mockTodoDate={todos} />
     </div>
   );
 };

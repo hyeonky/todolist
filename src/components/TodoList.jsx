@@ -13,9 +13,7 @@ const TodoList = ({ mockTodoDate }) => {
             (
               <TodoItem
                 key={item.id}
-                isDone={item.isDone}
-                task={item.task}
-                createDate={item.createDate}
+                {...item}
               />
             )
           )
