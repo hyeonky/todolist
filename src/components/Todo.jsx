@@ -12,15 +12,15 @@ const mockTodoDate = [
   },
   {
     id: 2,
-    isDone: false,
+    isDone: true,
     task: '감자, 맛동산 캐기',
-    createDate: '2024.04.22',
+    createDate: '2024.04.21',
   },
   {
     id: 3,
-    isDone: false,
+    isDone: true,
     task: '고양이 놀아주기',
-    createDate: '2024.04.22',
+    createDate: '2024.04.23',
   },
 ];
 
@@ -29,7 +29,8 @@ const Todo = () => {
     <div>
       <TodoHd />
       <TodoEditor />
-      <TodoList />
+      {/* 구조분해할당 */}
+      <TodoList mockTodoDate={mockTodoDate} />
     </div>
   );
 };
