@@ -1,35 +1,47 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
-import TodoList from './TodoList';
-import TodoEditor from './TodoEditor';
-import TodoHd from './TodoHd';
-import { mockTodoDate } from '@/data/todoData';
+import React, { useState } from 'react'
+import TodoHd from './TodoHd'
+import TodoEditor from './TodoEditor'
+import TodoList from './TodoList'
+import { mockTodoData } from '@/data/todoData'
 
 const Todo = () => {
-  const [todos, setTodos] = useState(mockTodoDate);
+  const [todos, setTodos] = useState(mockTodoData)
 
-  // 할 일 추가하는 함수
   const addTodo = (task) => {
-    setTodos([
-      ...todos,
-      {
-        id: todos.length + 1,
-        isDone: false,
-        task: task,
-        createDate: new Date().toLocaleDateString(),
-      },
-    ]);
-  };
+    const newTodo = {
+      id: todos.length + 1,
+      isDone: false,
+      task: task,
+      createDate: new Date().toLocaleDateString(),
+    }
+    setTodos([newTodo, ...todos])
+  }
+
+  const onUpdate = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+      })
+    )
+  }
+
+  const onDelete = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id))
+  }
 
   return (
-    <div>
+    <div className="flex flex-col gap-4 p-8 pb-40">
       <TodoHd />
       <TodoEditor addTodo={addTodo} />
-      {/* 구조분해할당 */}
-      <TodoList mockTodoDate={todos} />
+      <TodoList
+        mockTodoData={todos}
+        onUpdate={onUpdate}
+        onDelete={onDelete}
+      />
     </div>
-  );
-};
+  )
+}
 
-export default Todo;
+export default Todo

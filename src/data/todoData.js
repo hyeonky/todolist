@@ -1,4 +1,4 @@
-export const mockTodoDate = [
+export const mockTodoData = [
   {
     id: 1,
     isDone: false,
@@ -14,7 +14,7 @@ export const mockTodoDate = [
   {
     id: 3,
     isDone: false,
-    task: '고양이 놀아주기',
-    createDate: '2024.04.23',
+    task: '고양이 츄루주기',
+    createDate: '2024.04.22',
   },
-];
+]
